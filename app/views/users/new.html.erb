@@ -1,0 +1,62 @@
+<% content_for :cover do %>
+  <div class="top">
+    <%= video_tag "top.mp4", autoplay: true, loop: true, muted: true, class: "top_video" %>
+    <div class="top-container">
+      
+      <div class="login-panel col-xs-offset-1 col-xs-10">
+        <div class="panel panel-default">
+          <div class="panel-header">
+            <h2 class="text-center">アカウント作成</h2>
+          </div>
+          <div class="panel-body">
+            <%= form_for(@user) do |f| %>
+              <%= render "layouts/error_messages", model: f.object %>
+              <div class="form-group">
+                <%= f.label :name, "名前" %>
+                <%= f.text_field :name, class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :user_id, "ユーザーID" %>
+                <%= f.text_field :user_id, class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :email, "メールアドレス" %>
+                <%= f.email_field :email, class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :password, "パスワード" %>
+                <%= f.password_field :password, class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :password_confirmation, "パスワード確認" %>
+                <%= f.password_field :password_confirmation, class: "form-control" %>
+              </div>
+              
+              <%= f.submit "新規登録", class: "btn btn-default btn-block" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="top2"><br>
+    <h1>↓</h1><br>
+    <h1>就活仲間を見つける</h1>
+  </div>
+  <div class="top2">
+    <h1>就活仲間とグループを作る</h1>
+    <h5>円滑な情報交換をしましょう</h5>
+  </div>
+  <div class="top2">
+    <h1>企業のみんなの口コミを読む</h1>
+    <h5>就活生のリアルな声を聞きましょう</h5>
+  </div>
+  <div class="top2">
+    <h1>企業をフォローして関連ニュースを取得</h1>
+    <h5>企業の最新情報をチェックしましょう</h5>
+  </div>
+  <div class="top2">
+    <h1>イベントを投稿して勉強会を主催・参加</h1>
+    <h5>ディスカッションの練習会など使い方はあなた次第です</h5>
+  </div>
+<% end %>

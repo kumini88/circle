@@ -1,0 +1,29 @@
+<% if groups.count == 0 %>
+  <p class="text-center">グループがありません</p>
+<% end %>
+
+<ul class="media-list">
+  <% groups.each do |group| %>
+    <li class="media well">
+      <div class="media-left">
+        <%= image_tag group.icon, size: 50, class: "media-object img-circle" %>
+      </div>
+      <div class="media-body">
+        <div>
+          <%= link_to group.name, group_path(group) %>
+          <span class="text-muted">@<%= group.group_id %></span>
+          <span class="text-muted pull-right"><%= group.member_users.count %>人が参加</span>
+          <p class="panelprofile"><%= group.profile %></p>
+        </div>
+        <div class="flex-container">
+          <div>
+            <%= render "grouprelationships/follow_button", group: group %>
+          </div>
+          <div>
+            <%= render "members/member_button", group: group %>
+          </div>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

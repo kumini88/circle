@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="col-sm-2">
+    <nav class="nav-sidebar user-sbar">
+      <ul class="nav tabs text-center">
+
+            <li class="active"><a href="#tab2" data-toggle="tab">投稿</a></li>
+            <li class=""><a href="#tab3" data-toggle="tab">イベント</a></li>
+            <li class=""><a href="#tab4" data-toggle="tab">ニュース</a></li>
+            <li class=""><a href="#tab5" data-toggle="tab">メンバー<%= @group.member_users.count %></a></li>
+            <% if current_user.member?(@group) %>
+              <li class=""><a href="#tab5-1" data-toggle="tab">参加希望者<%= @group.applicant_users.count %></a></li>
+            <% end %>
+            <li class=""><a href="#tab6" data-toggle="tab">フォロワー</a></li>
+
+      </ul>
+    </nav>
+  </div>
+
+
+  <div class="tab-content">
+
+    <div class="tab-pane active in fade timeline-posts" id="tab2">
+      <%= render "posts/posts", posts: @posts %>
+    </div>
+    <div class="tab-pane fade timeline-events" id="tab3">
+      <%= render "events/events", events: @events %>
+    </div>
+    <div class="tab-pane fade" id="tab4">
+      準備中
+    </div>
+    <div class="tab-pane fade" id="tab5">
+      <%= render "users/users", users: @member_users, imasen: "メンバーがいません" %>
+    </div>
+    <div class="tab-pane fade" id="tab5-1">
+      <%= render "users/applicant_users", users: @applicant_users, imasen: "参加希望者はいません" %>
+    </div>
+    <div class="tab-pane fade" id="tab6">
+      <%= render "users/users", users: @group_followers, imasen: "フォロワーがいません" %>
+    </div>
+
+  </div>
+</div>

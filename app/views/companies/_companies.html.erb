@@ -1,0 +1,23 @@
+<% if companies.count == 0 %>
+  <p class="text-center"><%= imasen %></p>
+<% end %>
+
+<ul class="media-list">
+  <% companies.each do |company| %>
+    <li class="media well">
+      <div class="media-left">
+        <%= image_tag company.icon, size: 50, class: "media-object img-circle" %>
+      </div>
+      <div class="media-body">
+        <div>
+          <%= link_to company.name, company %>
+          <p class="panelprofile"><%= company.profile %></p>
+        </div>
+        <div>
+          <%= render "companyrelationships/follow_button", company: company %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate companies %>
+</ul>

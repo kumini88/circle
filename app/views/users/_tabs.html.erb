@@ -1,0 +1,104 @@
+<div class="container">
+  <div class="col-sm-2">
+    <nav class="nav-sidebar user-sbar">
+      <ul class="nav tabs text-center">
+            <li class=""><a href="#tab1" data-toggle="tab">情報</a></li>
+            <li class="active"><a href="#tab2" data-toggle="tab">投稿</a></li>
+    
+            <li class=""><a href="#collapse3" data-toggle="collapse" data-parent="#accordion">イベント</a></li>
+              <div id="collapse3" class="collapse">
+                <ul class="nav tabs innertab">
+                  <li class=""><a href="#tab3-1" data-toggle="tab" class="inner">主催</a></li>
+                  <li class=""><a href="#tab3-2" data-toggle="tab" class="inner">参加</a></li>
+                </ul>
+              </div>
+              
+            <li class=""><a href="#collapse4" data-toggle="collapse" data-parent="#accordion">いいね</a></li>
+              <div id="collapse4" class="collapse">
+                <ul class="nav tabs innertab">
+                  <li class=""><a href="#tab4-1" data-toggle="tab" class="inner">投稿</a></li>
+                  <li class=""><a href="#tab4-2" data-toggle="tab" class="inner">イベント</a></li>
+                  <li class=""><a href="#tab4-3" data-toggle="tab" class="inner">ニュース</a></li>
+                </ul>
+              </div>
+            
+            <li class=""><a href="#collapse5" data-toggle="collapse" data-parent="#accordion">フォロー<%= @user.followings.count + @user.following_groups.count + @user.following_companies.count %></a></li>
+              <div id="collapse5" class="collapse">
+                <ul class="nav tabs innertab">
+                  <li class=""><a href="#tab5-1" data-toggle="tab" class="inner">ユーザー<%= @user.followings.count %></a></li>
+                  <li class=""><a href="#tab5-2" data-toggle="tab" class="inner">グループ<%= @user.following_groups.count %></a></li>
+                  <li class=""><a href="#tab5-3" data-toggle="tab" class="inner">企業<%= @user.following_companies.count %></a></li>
+                </ul>
+              </div>
+              
+            <li class=""><a href="#tab6" data-toggle="tab">フォロワー<%= @user.followers.count %></a></li>
+            <li class=""><a href="#tab7" data-toggle="tab">グループ</a></li>
+      </ul>
+    </nav>
+  </div>
+
+
+  <div class="tab-content">
+    <div class="tab-pane fade" id="tab1">
+      <div class="info-panel panel">
+        <div class="panel-content">
+          <h4>職業</h4><div class="text-center"><%= @user.job %></div><br><br>
+          <h4>志望業界</h4><div class="text-center"><%= @user.gyokai %></div><br><br>
+          <h4>志望職種</h4><div class="text-center"><%= @user.occupation %></div><br><br>
+          <h4>大学院</h4><div class="text-center"><%= @user.grschool %></div><br><br>
+          <h4>大学</h4><div class="text-center"><%= @user.college %></div><br><br>
+          <h4>高校</h4><div class="text-center"><%= @user.highschool %></div><br><br>
+          <h4>専攻</h4><div class="text-center"><%= @user.major %></div><br><br>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane active in fade timeline-posts" id="tab2">
+      <%= render "posts/posts", posts: @posts %>
+    </div>
+    <div class="tab-pane fade timeline-events" id="tab3-1">
+      <%= render "events/events", events: @events %>
+    </div>
+    <div class="tab-pane fade timeline-events" id="tab3-2">
+      <%= render "events/events", events: @join_events %>
+    </div>
+    <div class="tab-pane fade" id="tab4-1">
+      <%= render "posts/posts", posts: @favorite_posts %>
+    </div>
+    <div class="tab-pane fade" id="tab4-2">
+      <%= render "events/events", events: @clip_events %>
+    </div>
+    <div class="tab-pane fade" id="tab4-3">
+      準備中
+    </div>
+    
+    <div class="tab-pane fade" id="tab5-1">
+      <%= render "users", users: @followings, imasen: "フォローしていません" %>
+    </div>
+    <div class="tab-pane fade" id="tab5-2">
+      <%= render "groups/groups", groups: @following_groups %>
+    </div>
+    <div class="tab-pane fade" id="tab5-3">
+      <%= render "companies/companies", companies: @following_companies, imasen: "フォローしていません" %>
+    </div>
+
+    <div class="tab-pane fade" id="tab6">
+      <%= render "users", users: @followers, imasen: "フォロワーがいません" %>
+    </div>
+    <div class="tab-pane fade" id="tab7">
+      <h4>企業</h4>
+      <div class="timeline-company">
+        <%= render "companies/companies", companies: @member_companies, imasen: "企業がありません" %>
+      </div>
+      <h4>グループ
+        <% if current_user == @user %>
+          <span class="member_button pull-right">
+            <%= link_to "グループを作る", new_group_path, remote: true %>
+          </span>
+        <% end %>
+      </h4>
+      <div class="timeline-groups">
+        <%= render "groups/groups", groups: @member_groups %>
+      </div>
+    </div>
+  </div>
+</div>

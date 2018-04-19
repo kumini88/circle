@@ -1,0 +1,92 @@
+<h1 class="text-center">プロフィール編集</h1>
+
+<div class="row col-xs-offset-1 col-xs-10">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= form_for(@user, url: user_path(@user), html: { method: :patch }) do |f| %>
+        <%= render "layouts/error_messages", model: f.object %>
+        
+        <div class="form-group">
+          <%= f.label :image, "アイコン" %>
+          <%= image_tag @user.icon, size: 120, class: "media-object img-circle img-responsive" %>
+          <%= f.file_field :image %>
+        </div>
+        <div class="form-group">
+          <%= f.label :name, "名前" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :profile, "プロフィール" %>
+          <%= f.text_field :profile, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :twitter, "Twitter" %>
+          <%= f.text_field :twitter, class: "form-control", placeholder: "例: https://twitter.com/connectexample" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :facebook, "facebook" %>
+          <%= f.text_field :facebook, class: "form-control", placeholder: "例: https://www.facebook.com/connectexample" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :linkedin, "Linkedin" %>
+          <%= f.text_field :linkedin, class: "form-control", placeholder: "例: https://www.linkedin.com/in/connectexample/" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :instagram, "Instagram" %>
+          <%= f.text_field :instagram, class: "form-control", placeholder: "例: https://www.instagram.com/connectexample/" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :otherlinka, "その他リンク" %>
+          <%= f.text_field :otherlinka, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :otherlinkb, "その他リンク2" %>
+          <%= f.text_field :otherlinkb, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :highschool, "高校" %>
+          <%= f.text_field :highschool, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :college, "大学" %>
+          <%= f.text_field :college, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :grschool, "大学院" %>
+          <%= f.text_field :grschool, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :major, "専攻" %>
+          <%= f.text_field :major, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :job, "職業" %>
+          <%= f.text_field :job, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :gyokai, "志望業界" %>
+          <%= f.text_field :gyokai, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :occupation, "志望職種" %>
+          <%= f.text_field :occupation, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password, "パスワード" %>
+          <%= f.password_field :password, class: "form-control", placeholder: "パスワードを変更する場合は入力してください" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation, "パスワード確認" %>
+          <%= f.password_field :password_confirmation, class: "form-control", placeholder: "もう一度入力してください" %>
+        </div>
+        
+        <%= f.submit "編集を完了する", class: "btn btn-default btn-block" %>
+        
+      <% end %>
+    </div>
+  </div>
+</div>

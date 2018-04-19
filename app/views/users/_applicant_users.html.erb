@@ -1,0 +1,35 @@
+<% if users.count == 0 %>
+  <p class="text-center"><%= imasen %></p>
+<% end %>
+
+<ul class="media-list">
+  <% users.each do |user| %>
+    <li class="media well">
+      <div class="media-left">
+        <%= image_tag user.icon, size: 50, class: "media-object img-circle" %>
+      </div>
+      <div class="media-body">
+        <div>
+          <%= link_to user.name, user_path(user) %>
+          <span class="text-muted">@<%= user.user_id %></span>
+          <p class="panelprofile"><%= user.profile %></p>
+        </div>
+        <div>
+          <% unless current_user == user %>
+            <div class="flex-container">
+              <div>
+                <%= render "relationships/follow_button", user: user %>
+              </div>
+              <div>
+                <%= render "applicants/permit_button", user: user, group: @group %>
+              </div>
+              <div>
+                <%= render "applicants/deny_button", user: user, group: @group %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

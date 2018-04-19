@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="col-sm-2">
+    <nav class="nav-sidebar user-sbar">
+      <ul class="nav tabs text-center">
+            <li class=""><a href="#tab1" data-toggle="tab">情報</a></li>
+            <li class="active"><a href="#tab2" data-toggle="tab">投稿</a></li>
+            <li class=""><a href="#tab3" data-toggle="tab">イベント</a></li>
+            <li class=""><a href="#tab4" data-toggle="tab">ニュース</a></li>
+            <li class=""><a href="#tab5" data-toggle="tab">口コミ</a></li>
+            <li class=""><a href="#tab6" data-toggle="tab">メンバー</a></li>
+            <li class=""><a href="#tab7" data-toggle="tab">フォロワー</a></li>
+      </ul>
+    </nav>
+  </div>
+
+
+  <div class="tab-content">
+    <div class="tab-pane fade" id="tab1">
+      準備中
+    </div>
+    <div class="tab-pane active in fade timeline-posts" id="tab2">
+      <%= render "posts/posts", posts: @posts %>
+    </div>
+    <div class="tab-pane fade timeline-events" id="tab3">
+      <%= render "events/events", events: @events %>
+    </div>
+    <div class="tab-pane fade" id="tab4">
+      準備中
+    </div>
+    <div class="tab-pane fade" id="tab5">
+      <h4>みんなの口コミ
+          <span class="review_button pull-right">
+            <%= link_to "口コミを投稿する", new_review_path, remote: true %>
+          </span>
+      </h4>
+      <div class="timeline-reviews">
+        <%= render "reviews/reviews", reviews: @reviews %>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="tab6">
+      <%= render "users/users", users: @member_users, imasen: "メンバーがいません" %>
+    </div>
+    <div class="tab-pane fade" id="tab7">
+      <%= render "users/users", users: @company_followers, imasen: "フォロワーがいません" %>
+    </div>
+  </div>
+</div>

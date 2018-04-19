@@ -1,0 +1,9 @@
+<div class="">ユーザー
+  <%= render "users/users", users: @search_users, imasen: "該当するユーザーがいません" %>
+</div>
+<div class="">グループ
+  <%= render "groups/groups", groups: @search_groups, imasen: "該当するグループがいません" %>
+</div>
+<div class="">企業
+  <%= render "companies/companies", companies: @search_companies, imasen: "該当する企業がいません" %>
+</div>

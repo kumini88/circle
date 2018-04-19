@@ -1,0 +1,39 @@
+<div class="row user">
+  <div class="user-left">
+    <div class="user-icon">
+      <%= image_tag @user.icon, size: 180, class: "img-circle" %>
+    </div>
+    
+  </div>
+  <div class="user-right">
+    <div class="use">
+      <span class="user-name"><%= @user.name %></span>
+      <span class="user-id">@<%= @user.user_id %></span>
+      <span class="editprof-button pull-right">
+        <% if current_user == @user %>
+          <%= link_to image_tag("pen.png", size: 20), edit_user_path(@user) %>
+        <% end %>
+      </span>
+    </div>
+    <div class="user-prof">
+      <%= @user.profile %>
+    </div>
+    <div class="user-link">
+      <% if @user.twitter != "" %><%= link_to image_tag('sns/twitter.png', size: 20), @user.twitter %><% end %>
+      <% if @user.facebook != "" %><%= link_to image_tag('sns/facebook.png', size: 20), @user.facebook %><% end %>
+      <% if @user.instagram != "" %><%= link_to image_tag('sns/instagram.png', size: 20), @user.instagram %><% end %>
+      <% if @user.linkedin != "" %><%= link_to image_tag('sns/linkedin.png', size: 20), @user.linkedin %><% end %>
+      <% if @user.otherlinka != "" %><%= link_to image_tag('sns/link.png', size: 20) + @user.otherlinka, @user.otherlinka %><% end %>
+      <% if @user.otherlinkb != "" %><%= link_to image_tag('sns/link.png', size: 20) + @user.otherlinkb, @user.otherlinkb %><% end %>
+    </div>
+  </div>
+  <div class="flex-container">
+    <div class="follow-button">
+      <%= render "relationships/follow_button", user: @user %>
+    </div>
+  </div>
+</div>
+
+<div>
+  <%= render "tabs" %>
+</div>

@@ -1,0 +1,11 @@
+<% if current_user.companyfollowing?(company) %>
+  <%= form_for(current_user.companyrelationships.find_by(company_id: company.id), html: { method: :delete }) do |f| %>
+    <%= hidden_field_tag :company_id, company.id %>
+    <%= f.submit "フォロー中", class: "btn btn-unfollow" %>
+  <% end %>
+<% else %>
+  <%= form_for(current_user.companyrelationships.build) do |f| %>
+    <%= hidden_field_tag :company_id, company.id %>
+    <%= f.submit "フォロー", class: "btn btn-follow" %>
+  <% end %>
+<% end %>

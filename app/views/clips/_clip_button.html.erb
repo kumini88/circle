@@ -1,0 +1,12 @@
+
+<% if current_user.clip?(event) %>
+  <%= form_for(current_user.clips.find_by(event_id: event.id), html: { method: :delete }) do |f| %>
+    <%= hidden_field_tag :event_id, event.id %>
+    <%= image_submit_tag "filledstar.png", width: 20, height: 20 %>
+  <% end %>
+<% else %>
+  <%= form_for(current_user.clips.build) do |f| %>
+    <%= hidden_field_tag :event_id, event.id %>
+    <%= image_submit_tag "star.png", width: 20, height: 20 %>
+  <% end %>
+<% end %>

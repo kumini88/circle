@@ -1,0 +1,75 @@
+<% if events.count == 0 %>
+  <p class="text-center">イベントがありません</p>
+<% end %>
+
+<ul class="media-list">
+    <% events.each do |event| %>
+      <% user = event.user %>
+      <li class="media well">
+        <div class="event-title">
+          <% if current_user == user %>
+            <span class="pull-right"><%= link_to image_tag("trash.png", size: 10), event, method: :delete, data: { confirm: "削除しますか？" } %></span>
+          <% end %>
+          <h6><%= event.title %></h6>
+        </div>
+        <div class="media-left">
+          <% if event.group_id != nil %>
+            <% group = event.group %>
+            <%= image_tag group.icon, size: 50, class: "media-object img-circle" %>
+            <br>
+            <%= image_tag user.icon, size: 40, class: "media-object img-circle" %>
+            @<%= link_to user.user_id, user, class: "text-muted" %>
+          <% elsif event.company_id != nil %>
+            <% company = event.company %>
+            <%= image_tag company.icon, size: 50, class: "media-object img-circle" %>
+            <br>
+            <%= image_tag user.icon, size: 40, class: "media-object img-circle" %>
+            @<%= link_to user.user_id, user, class: "text-muted" %>
+          <% else %>
+            <%= image_tag user.icon, size: 50, class: "media-object img-circle" %>
+          <% end %>
+        </div>
+        <div class="media-body">
+          <% if event.group_id != nil %>
+            <% group = event.group %>
+            <%= link_to group.name, group %>
+            <span class="text-muted">@<%= group.group_id %></span>
+          <% elsif event.company_id != nil %>
+            <% company = event.company %>
+            <%= link_to company.name, company %>
+          <% else %>
+            <%= link_to user.name, user %>
+            <span class="text-muted">@<%= user.user_id %></span>
+          <% end %>
+          
+          <p>日時: <%= event.date.strftime('%Y/%m/%d %H:%M') %></p>
+          <p>場所: <%= event.place %></p>
+          <p><%= simple_format(event.content) %></p>
+          
+          <div class="btn-toolbar pull-right">
+            <div class="btn-group">
+              <%= link_to image_tag("comment.png", size: 20), new_eventcomment_path, remote: true  %>
+            </div>
+            <div class="btn-group">
+              <%= event.eventcomments.count %>
+            </div>
+            <div class="btn-group">
+              <%= render "clips/clip_button", event: event %>
+            </div>
+            <div class="btn-group">
+              <%= link_to event.clips.count, clip_users_event_path(event), class: "text-muted" %>
+            </div>
+            <div class="btn-group">
+              <%= render "joins/join_button", event: event %>
+            </div>
+            <div class="btn-group">
+              <%= link_to event.joins.count, join_users_event_path(event), class: "text-muted" %>
+            </div>
+            <div class="btn-group">
+              <%= link_to "詳細", event_path(event), class: "text-muted" %>
+            </div>
+          </div>
+        </div>
+      </li>
+    <% end %>
+</ul>

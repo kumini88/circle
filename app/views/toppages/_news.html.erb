@@ -1,0 +1,18 @@
+<ul>
+  <% newsarray.each do |news| %>
+    <li class="media well">
+      <div class="media-left">
+        <% if news[:img] == "" %>
+          <%= image_tag "Noimage.jpg", size: 100, class: "media-object" %>
+        <% else %>
+          <%= image_tag news[:img], size: 100, class: "media-object" %>
+        <% end %>
+      </div>
+      <div class="media-body">
+        <%= link_to news[:title], news[:link] %>
+        <p><%= news[:news_source] %></p>
+        <p><%= news[:date] %></p>
+      </div>
+    </li>
+  <% end %>
+</ul>

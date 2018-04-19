@@ -1,0 +1,48 @@
+<h1 class="text-center">プロフィール編集</h1>
+
+<div class="row col-xs-offset-2 col-xs-8">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= form_for(@group, url: group_path(@group), html: { method: :patch }) do |f| %>
+        <%= render "layouts/error_messages", model: f.object %>
+        
+        <div class="form-group">
+          <%= f.label :image, "アイコン" %>
+          <%= image_tag @group.icon, size: 120, class: "media-object img-circle img-responsive" %>
+          <%= f.file_field :image %>
+        </div>
+        <div class="form-group">
+          <%= f.label :name, "グループ名" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :profile, "プロフィール" %>
+          <%= f.text_field :profile, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :twitter, "Twitter" %>
+          <%= f.text_field :twitter, class: "form-control", placeholder: "例: https://twitter.com/connectexample" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :facebook, "facebook" %>
+          <%= f.text_field :facebook, class: "form-control", placeholder: "例: https://www.facebook.com/connectexample" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :instagram, "Instagram" %>
+          <%= f.text_field :instagram, class: "form-control", placeholder: "例: https://www.instagram.com/connectexample/" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :otherlinka, "その他リンク" %>
+          <%= f.text_field :otherlinka, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :otherlinkb, "その他リンク2" %>
+          <%= f.text_field :otherlinkb, class: "form-control" %>
+        </div>
+        
+        <%= f.submit "編集を完了する", class: "btn btn-primary btn-block" %>
+        
+      <% end %>
+    </div>
+  </div>
+</div>

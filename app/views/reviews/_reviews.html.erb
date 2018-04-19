@@ -1,0 +1,53 @@
+<% if reviews.count == 0 %>
+  <p class="text-center">口コミがありません</p>
+<% end %>
+
+<ul class="media-list">
+    <% reviews.each do |review| %>
+      <% user = review.user %>
+      <li class="media well">
+        <div class="review-title">
+          <% if current_user == user %>
+            <span class="pull-right"><%= link_to image_tag("trash.png", size: 10), @review, method: :delete, data: { confirm: "削除しますか？" } %></span>
+          <% end %>
+          <h5><%= review.title %></h5>
+          <h5><%= review.userstatus %></h5>
+        </div>
+        <div class="media-left">
+          <% if review.public == true %>
+            <%= image_tag "icon_user_default.jpg", size: 50, class: "media-object img-circle" %>
+          <% else %>
+            <%= image_tag user.icon, size: 50, class: "media-object img-circle" %>
+          <% end %>
+        </div>
+        <div class="media-body">
+          <% if review.public == true %>
+            <p>匿名</p>
+          <% else %>
+            <%= link_to user.name, user %>
+            <span class="text-muted">@<%= user.user_id %></span>
+          <% end %>
+          <p class="text-muted"><%= review.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+          <p><%= review.content %></p>
+        </div>
+          
+        <div class="btn-toolbar pull-right">
+          <div class="btn-group">
+
+          </div>
+          <div class="btn-group">
+
+          </div>
+          <div class="btn-group">
+
+          </div>
+          <div class="btn-group">
+
+          </div>
+          <div class="btn-group">
+            <%= link_to "詳細", review, class: "text-muted" %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+</ul>

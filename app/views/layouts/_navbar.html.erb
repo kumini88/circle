@@ -1,0 +1,33 @@
+<div id="divmodal" class="modal fade" role="dialog" aria-hidden="true"></div>
+
+
+<header class="cd-auto-hide-header">
+		<div class="logo"><a href="/">circle</a></div>
+	<nav class="cd-primary-nav">
+		<a href="#cd-navigation" class="nav-trigger">
+			<span>
+				<em aria-hidden="true"></em>
+				Menu
+			</span>
+		</a> <!-- .nav-trigger -->
+ 
+		<ul id="cd-navigation">
+			<!-- links here -->
+			<% if logged_in? %>
+				<li class="searchbox">
+					<%= search_form_for @search, url: search_path do |f| %>
+	          <li class="searchform"><%= f.text_field :name_cont %></li>
+	          <li class="searchbtn"><%= f.submit ("検索"), class: "search-btn" %></li>
+	        <% end %>
+				</li>
+				<li><%= link_to "投稿", new_post_path, remote: true %></li>
+	      <li><%= link_to "イベントを投稿", new_event_path, remote: true %></li>
+	      <li><%= link_to image_tag("mail.png", size:25), "/rooms/show" %></li>
+				<li><%= link_to image_tag(current_user.icon, size: 30), user_path(current_user), class: "img-circle" %></li>
+				<li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+			<% else %>
+				<li><%= link_to "アカウント作成", new_user_path %></li>
+			<% end %>
+		</ul>
+	</nav>
+</header>

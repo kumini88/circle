@@ -1,0 +1,15 @@
+<% unless current_user.member?(group) %>
+
+  <% if current_user.applicant?(group) %>
+    <%= form_for(current_user.applicants.find_by(group_id: group.id), html: { method: :delete }) do |f| %>
+      <%= hidden_field_tag :group_id, group.id %>
+      <%= f.submit "希望を取消す", class: "btn btn-unjoin" %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.applicants.build) do |f| %>
+      <%= hidden_field_tag :group_id, group.id %>
+      <%= f.submit "参加希望", class: "btn btn-join" %>
+    <% end %>
+  <% end %>
+  
+<% end %>

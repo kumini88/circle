@@ -1,0 +1,6 @@
+<% if current_user.member?(group) %>
+  <%= form_for(current_user.members.find_by(group_id: group.id), html: { method: :delete }) do |f| %>
+    <%= hidden_field_tag :group_id, group.id %>
+    <%= f.submit "退会する", class: "btn btn-unjoin" %>
+  <% end %>
+<% end %>

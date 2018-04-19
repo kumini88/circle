@@ -1,0 +1,5 @@
+
+  <%= form_for(user.applicants.find_by(group_id: group.id), html: { method: :delete }) do |f| %>
+    <%= hidden_field_tag :group_id, group.id %>
+    <%= f.submit "拒否", class: "btn btn-unjoin" %>
+  <% end %>

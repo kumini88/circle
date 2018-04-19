@@ -1,0 +1,5 @@
+ 
+  <%= form_for(user.members.find_or_create_by(group_id: group.id)) do |f| %>
+    <%= hidden_field_tag :group_id, group.id %>
+    <%= f.submit "許可", class: "btn btn-join" %>
+  <% end %>

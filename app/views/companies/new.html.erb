@@ -1,0 +1,18 @@
+<div class="row login-panel">
+    <div class="panel panel-default">
+      <div class="panel-header">
+        <h2 class="text-center">企業情報作成</h2>
+      </div>
+      <div class="panel-body">
+        <%= form_for(@company) do |f| %>
+          <%= render "layouts/error_messages", model: f.object %>
+          <div class="form-group">
+            <%= f.label :name, "名前" %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+          
+          <%= f.submit "新規登録", class: "btn btn-primary btn-block" %>
+        <% end %>
+      </div>
+    </div>
+  </div>

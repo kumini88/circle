@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="eachpost media well col-xs-6">
+      <div class="media-left">
+        <% if @post.group_id != nil %>
+          <%= image_tag @group.icon, size: 50, class: "media-object img-circle" %>
+          <br>
+          <%= image_tag @user.icon, size: 40, class: "media-object img-circle" %>
+          @<%= link_to @user.user_id, @user, class: "text-muted" %>
+        <% elsif @post.company_id != nil %>
+          <%= image_tag @company.icon, size: 50, class: "media-object img-circle" %>
+          <br>
+          <%= image_tag @user.icon, size: 40, class: "media-object img-circle" %>
+          @<%= link_to @user.user_id, @user, class: "text-muted" %>
+        <% else %>
+          <%= image_tag @user.icon, size: 50, class: "media-object img-circle" %>
+        <% end %>
+      </div>
+      <div class="media-body">
+        <% if @post.group_id != nil %>
+          <%= link_to @group.name, @group %>
+          <span class="text-muted">@<%= @group.group_id %></span>
+        <% elsif @post.company_id != nil %>
+          <%= link_to @company.name, @company %>
+        <% else %>
+          <%= link_to @user.name, @user %>
+          <span class="text-muted">@<%= @user.user_id %></span>
+        <% end %>
+        <% if current_user == @user %>
+          <span class="pull-right"><%= link_to image_tag("trash.png", size: 10), @post, method: :delete, data: { confirm: "削除しますか？" } %></span>
+        <% end %>
+        <p class="text-muted"><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+        <p class="post-content"><%= simple_format(@post.content) %></p>
+        <div><%= @post.image %></div>
+      </div>
+
+      <div class="btn-toolbar pull-right">
+        <div class="btn-group">
+          <%= link_to image_tag("comment.png", size: 20), new_comment_path, remote: true %>
+        </div>
+        <div class="btn-group">
+          <%= @comments.count %>
+        </div>
+        <div class="btn-group">
+          <%= render "favorites/favorite_button", post: @post %>
+        </div>
+        <div class="btn-group">
+          <%= link_to @post.favorites.count, favorite_users_post_path(@post), class: "text-muted" %>
+        </div>
+      </div>
+  </div>
+  
+  <div class="postcomment col-xs-offset-1 col-xs-5">
+    コメント
+    <div>
+      <div class="comments">
+        <%= render "comments/comments", comments: @comments %>
+      </div>
+    </div>
+  </div>
+</div>

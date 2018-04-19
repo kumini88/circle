@@ -1,0 +1,42 @@
+<div class="row user">
+  <div class="user-left">
+    <div class="user-icon">
+      <%= image_tag @group.icon, size: 180, class: "img-circle" %>
+    </div>
+    
+  </div>
+  <div class="user-right">
+    <div class="use">
+      <span class="user-name"><%= @group.name %></span>
+      <span class="user-id">@<%= @group.group_id %></span>
+      <span class="editprof-button pull-right">
+        <% if @member_users.include?(current_user) %>
+          <%= link_to image_tag("pen.png", size: 20), edit_group_path(@group) %>
+        <% end %>
+      </span>
+    </div>
+    <div class="user-prof">
+      <%= @group.profile %>
+    </div>
+    <div class="user-link">
+      <% if @group.twitter != "" %><%= link_to image_tag('sns/twitter.png', size: 20), @group.twitter %><% end %>
+      <% if @group.facebook != "" %><%= link_to image_tag('sns/facebook.png', size: 20), @group.facebook %><% end %>
+      <% if @group.instagram != "" %><%= link_to image_tag('sns/instagram.png', size: 20), @group.instagram %><% end %>
+      <% if @group.otherlinka != "" %><%= link_to image_tag('sns/link.png', size: 20) + @group.otherlinka, @group.otherlinka %><% end %>
+      <% if @group.otherlinkb != "" %><%= link_to image_tag('sns/link.png', size: 20) + @group.otherlinkb, @group.otherlinkb %><% end %>
+    </div>
+  </div>
+  <div class="flex-container">
+    <div class="member_button">
+      <%= render "applicants/applicant_button", group: @group %>
+      <%= render "members/member_button", group: @group %>
+    </div>
+    <div class="follow_button">
+      <%= render "grouprelationships/follow_button", group: @group %>
+    </div>
+  </div>
+</div>
+
+<div>
+  <%= render "tabs" %>
+</div>

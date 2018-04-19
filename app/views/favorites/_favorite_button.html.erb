@@ -1,0 +1,12 @@
+
+<% if current_user.favorite?(post) %>
+  <%= form_for(current_user.favorites.find_by(post_id: post.id), html: { method: :delete }) do |f| %>
+    <%= hidden_field_tag :post_id, post.id %>
+    <%= image_submit_tag "filledstar.png", width: 20, height: 20 %>
+  <% end %>
+<% else %>
+  <%= form_for(current_user.favorites.build) do |f| %>
+    <%= hidden_field_tag :post_id, post.id %>
+    <%= image_submit_tag "star.png", width: 20, height: 20 %>
+  <% end %>
+<% end %>

@@ -1,0 +1,11 @@
+<% if current_user.groupfollowing?(group) %>
+  <%= form_for(current_user.grouprelationships.find_by(group_id: group.id), html: { method: :delete }) do |f| %>
+    <%= hidden_field_tag :group_id, group.id %>
+    <%= f.submit "フォロー中", class: "btn btn-unfollow" %>
+  <% end %>
+<% else %>
+  <%= form_for(current_user.grouprelationships.build) do |f| %>
+    <%= hidden_field_tag :group_id, group.id %>
+    <%= f.submit "フォロー", class: "btn btn-follow" %>
+  <% end %>
+<% end %>
