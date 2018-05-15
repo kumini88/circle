@@ -11,14 +11,16 @@
             <% group = post.group %>
             <%= image_tag group.icon, size: 50, class: "media-object img-circle" %>
             <br>
-            <%= image_tag user.icon, size: 40, class: "media-object img-circle" %>
-            @<%= link_to user.user_id, user, class: "text-muted" %>
+            <%= image_tag user.icon, size: 50, class: "media-object img-circle" %>
+            <br>
+            <%= link_to "@"+user.user_id, user, class: "text-muted user-id-link" %>
           <% elsif post.company_id != nil %>
             <% company = post.company %>
             <%= image_tag company.icon, size: 50, class: "media-object img-circle" %>
             <br>
-            <%= image_tag user.icon, size: 40, class: "media-object img-circle" %>
-            @<%= link_to user.user_id, user, class: "text-muted" %>
+            <%= image_tag user.icon, size: 50, class: "media-object img-circle" %>
+            <br>
+            <%= link_to "@"+user.user_id, user, class: "text-muted user-id-link" %>
           <% else %>
             <%= image_tag user.icon, size: 50, class: "media-object img-circle" %>
           <% end %>

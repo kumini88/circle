@@ -11,10 +11,10 @@
                   <ul class="nav tabs innertab">
                     <li class=""><a href="#tab3-1" data-toggle="tab" class="inner">フォローした企業</a></li>
                     <li class=""><a href="#tab3-2" data-toggle="tab" class="inner">金融</a></li>
-                    <li class=""><a href="#tab3-3" data-toggle="tab" class="inner">IT・メディア</a></li>
+                    <li class=""><a href="#tab3-3" data-toggle="tab" class="inner">IT</a></li>
                     <li class=""><a href="#tab3-4" data-toggle="tab" class="inner">コンサル</a></li>
-                    <li class=""><a href="#tab3-5" data-toggle="tab" class="inner">自動車・機械</a></li>
-                    <li class=""><a href="#tab3-6" data-toggle="tab" class="inner">国際/一般</a></li>
+                    <li class=""><a href="#tab3-5" data-toggle="tab" class="inner">電機</a></li>
+                    <li class=""><a href="#tab3-6" data-toggle="tab" class="inner">メーカー</a></li>
                   </ul>
                 </div>
     		</ul>
@@ -32,9 +32,8 @@
               <div class="media-body">
                 <ul>
                   <br><li></li>
-                  <li>・著作権の関係から、ニュースを表示しておりません。</li>
-                  <li>・herokuの制限のため、企業情報を本社が東京にある企業からランダムに9000件のみ表示しております。</li>
-                  <li>・リアルタイムチャット(メッセージ)機能製作中。</li>
+                  <li>・herokuの制限のため、企業情報を本社が東京にある企業からランダムに9000件のみ表示しています。</li>
+                  <li>・リアルタイムチャット(メッセージ)機能製作中です。</li>
                   <br>
                   <li>以下は現在修復・対応中です</li>
                   <li>・画像の投稿機能</li>
@@ -54,19 +53,19 @@
         <p>準備中です</p>
       </div>
       <div class="tab-pane" id="tab3-2">
-        <p>準備中です</p>
+        <p><%= render "news", newsarray: get_news("financials") %></p>
       </div>
       <div class="tab-pane" id="tab3-3">
-        <p>準備中です</p>
+        <p><%= render "news", newsarray: get_news("infotech") %></p>
       </div>
       <div class="tab-pane" id="tab3-4">
-        <p>準備中です</p>
+        <p><%= render "news", newsarray: get_cnsl_news %></p>
       </div>
       <div class="tab-pane" id="tab3-5">
-        <p>準備中です</p>
+        <p><%= render "news", newsarray: get_news("electronics") %></p>
       </div>
       <div class="tab-pane" id="tab3-6">
-        <p>準備中です</p>
+        <p><%= render "news", newsarray: get_news("industrials") %></p>
       </div>
     </div>
   </div>

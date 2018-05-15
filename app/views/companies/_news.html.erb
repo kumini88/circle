@@ -1,5 +1,5 @@
 <ul>
-  <% newsarray.each do |news| %>
+  <% array.each do |news| %>
     <li class="media well">
       <div class="media-left">
         <% if news[:img] == "" %>
@@ -10,7 +10,7 @@
       </div>
       <div class="media-body">
         <%= link_to news[:title], news[:link] %>
-        <p><%= news[:source] %></p>
+        <p><%= news[:news_source] %></p>
       </div>
     </li>
   <% end %>

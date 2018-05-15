@@ -3,9 +3,9 @@ module ToppagesHelper
   require "nokogiri"
   require "open-uri"
   
-  def get_news(category)
-    begin
-      url = URI.escape("https://news.yahoo.co.jp/hl?c=#{category}")
+  def get_news(word)
+    
+      url = URI.escape("https://www.sankeibiz.jp/business/lists/#{word}-n.htm")
     
       charset = nil
       html = open(url) do |f|
@@ -18,27 +18,64 @@ module ToppagesHelper
       array = Array.new
       
     
-      doc.xpath("//*[@class='listBd']/li").each do |node|
-    
-        title = node.css(".ttl a").inner_text
-        link = node.css(".ttl a").attribute("href").value
-
+      doc.xpath("//*[@id='NewsList']//ul").each do |node|
   
+        title = node.css("a").inner_text
+        link = "https://www.sankeibiz.jp/" +node.css("a").attribute("href").value
+        
+        source = "SankeiBiz"
+        
         begin
-          img = node.css(".thumb a img").attribute("src").value
+          img = node.css(".lmFAjc").attribute("src").value
         rescue
           img = ""
         end
         
-        news_source = node.css(".source .cp").inner_text
-        date = node.css(".source").inner_text
-        date.delete!(news_source)
-        
-        array << {title: title, link: link, img: img, news_source: news_source, date: date}
+        array << {title: title, link: link, img: img, source: source}
       end
       
-    rescue
       return array
-    end
+    
   end
+  
+  
+
+  def get_cnsl_news
+    
+      url = URI.escape("https://www.consulnews.jp/post-archive/")
+    
+      charset = nil
+      html = open(url) do |f|
+        charset = f.charset
+        f.read
+      end
+    
+      doc = Nokogiri::HTML.parse(html, nil, charset)
+    
+      array = Array.new
+      
+    
+      doc.xpath("//*[@class='article']").each do |node|
+  
+        title = node.css("h3").inner_text
+        link = node.css("a").attribute("href").value
+        
+        source = "コンサル業界ニュース"
+        
+        begin
+          img = node.css(".wp-post-image").attribute("src").value
+        rescue
+          img = ""
+        end
+        
+        array << {title: title, link: link, img: img, source: source}
+      end
+      
+      return array
+    
+    end
+  
 end
+
+
+

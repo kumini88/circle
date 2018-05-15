@@ -6,9 +6,9 @@
             <li class="active"><a href="#tab2" data-toggle="tab">投稿</a></li>
             <li class=""><a href="#tab3" data-toggle="tab">イベント</a></li>
             <li class=""><a href="#tab4" data-toggle="tab">ニュース</a></li>
-            <li class=""><a href="#tab5" data-toggle="tab">メンバー<%= @group.member_users.count %></a></li>
+            <li class=""><a href="#tab5" data-toggle="tab">メンバー</a></li>
             <% if current_user.member?(@group) %>
-              <li class=""><a href="#tab5-1" data-toggle="tab">参加希望者<%= @group.applicant_users.count %></a></li>
+              <li class=""><a href="#tab5-1" data-toggle="tab">参加希望者</a></li>
             <% end %>
             <li class=""><a href="#tab6" data-toggle="tab">フォロワー</a></li>
 

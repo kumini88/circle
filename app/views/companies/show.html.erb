@@ -1,16 +1,17 @@
 <div class="row user">
   <div class="user-left">
     <div class="user-icon">
-      <%= image_tag @company.icon, size: 180, class: "img-circle" %>
+      <%= image_tag @company.icon, size: 150, class: "img-circle" %>
     </div>
- 
   </div>
+  
   <div class="user-right">
     <div class="use">
       <span class="user-name"><%= @company.name %></span>
-      <span class="editprof-button pull-right">
+      <span class="pull-right flex-container">
+        <%= render "companyrelationships/follow_button", company: @company, class: "follow-btn" %>
         <% if @member_users.include?(current_user) %>
-          <%= link_to image_tag("pen.png", size: 17), edit_company_path(@company) %>
+          <%= link_to "プロフィールを編集", edit_company_path(@company), class: "edit-profile-btn" %>
         <% end %>
       </span>
     </div>
@@ -24,8 +25,45 @@
     </div>
   </div>
   <div class="flex-container">
-    <div class="follow_button">
-      <%= render "companyrelationships/follow_button", company: @company %>
+    <div class="counter-box">
+      <div class="counter-text">
+        フォロワー
+      </div>
+      <div class="counter">
+        <%= @company.company_followers.count %>
+      </div>
+    </div>
+    <div class="counter-box">
+      <div class="counter-text">
+        メンバー
+      </div>
+      <div class="counter">
+        <%= @company.member_users.count %>
+      </div>
+    </div>
+    <div class="counter-box">
+      <div class="counter-text">
+        投稿
+      </div>
+      <div class="counter">
+        <%= @company.posts.count %>
+      </div>
+    </div>
+    <div class="counter-box">
+      <div class="counter-text">
+        イベント
+      </div>
+      <div class="counter">
+        <%= @company.events.count %>
+      </div>
+    </div>
+    <div class="counter-box">
+      <div class="counter-text">
+        掲示板
+      </div>
+      <div class="counter">
+        <%= @company.reviews.count %>
+      </div>
     </div>
   </div>
 </div>

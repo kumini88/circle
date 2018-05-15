@@ -22,16 +22,16 @@
                 </ul>
               </div>
             
-            <li class=""><a href="#collapse5" data-toggle="collapse" data-parent="#accordion">フォロー<%= @user.followings.count + @user.following_groups.count + @user.following_companies.count %></a></li>
+            <li class=""><a href="#collapse5" data-toggle="collapse" data-parent="#accordion">フォロー</a></li>
               <div id="collapse5" class="collapse">
                 <ul class="nav tabs innertab">
-                  <li class=""><a href="#tab5-1" data-toggle="tab" class="inner">ユーザー<%= @user.followings.count %></a></li>
-                  <li class=""><a href="#tab5-2" data-toggle="tab" class="inner">グループ<%= @user.following_groups.count %></a></li>
-                  <li class=""><a href="#tab5-3" data-toggle="tab" class="inner">企業<%= @user.following_companies.count %></a></li>
+                  <li class=""><a href="#tab5-1" data-toggle="tab" class="inner">ユーザー</a></li>
+                  <li class=""><a href="#tab5-2" data-toggle="tab" class="inner">グループ</a></li>
+                  <li class=""><a href="#tab5-3" data-toggle="tab" class="inner">企業</a></li>
                 </ul>
               </div>
               
-            <li class=""><a href="#tab6" data-toggle="tab">フォロワー<%= @user.followers.count %></a></li>
+            <li class=""><a href="#tab6" data-toggle="tab">フォロワー</a></li>
             <li class=""><a href="#tab7" data-toggle="tab">グループ</a></li>
       </ul>
     </nav>

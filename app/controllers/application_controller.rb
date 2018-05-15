@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   before_filter :set_search
   
   include SessionsHelper
-  include ToppagesHelper
   
   def set_search
     @search = [User.ransack(params[:q]), Group.ransack(params[:q]), Company.ransack(params[:q])] 

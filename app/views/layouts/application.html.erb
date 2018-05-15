@@ -24,13 +24,12 @@
   <body>
     <%= render 'layouts/navbar' %>
     <%= render 'layouts/flash_messages' %>
-    <main class="cd-main-content sub-nav-hero">
-      <br><br><br><br><br>
+    <main class="main-content">
       <%= yield :cover %>
-      <div class="container"><br><br><br><br>
+      <div class="container">
         <%= yield %>
       </div>
-    </main> <!-- .cd-main-content -->
+    </main>
   </body>
 </html>
 
